@@ -1,6 +1,18 @@
 .App {
   text-align: center;
 }
+#root {
+  width: 90%;
+  height: 100vh;
+  margin: 0 auto;
+  padding-top: 2px;
+  align-items: center;
+  background-image: linear-gradient(
+    to right,
+    rgba(231, 239, 81, 0.5),
+    rgb(231, 239, 81, 0.6)
+  );
+}
 
 .App-logo {
   height: 40vmin;
