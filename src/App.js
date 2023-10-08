@@ -6,6 +6,9 @@ import Login from "./components/Login";
 import Home from "./components/Home";
 import { useEffect } from "react";
 import ContactUs from "./components/ContactUs";
+import BottomFooter from "./components/BottomFooter";
+import PaymentDetails from "./components/PaymentDetails";
+import Search from "./components/Search";
 
 function App() {
   const handleResize = () => {
@@ -28,7 +31,10 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/paymentdetails" element={<PaymentDetails />} />
+        <Route path="/search" element={<Search />} />
       </Routes>
+      <BottomFooter style={{ position: "fixed", bottom: "5px" }} />
     </Router>
   );
 }

@@ -11,12 +11,7 @@ function ContactUs() {
     name: "",
     email: "",
     phoneNumber: "",
-    addressCountry: "",
-    addressState: "",
-    addressDistrict: "",
-    districtRegistrationNumber: "",
-    password: "",
-    confirmPassword: "",
+    message: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,9 +24,16 @@ function ContactUs() {
     e.preventDefault();
     console.log(formData);
   };
+  const min = (a, b) => {
+    if (a > b) {
+      return b;
+    } else {
+      return a;
+    }
+  };
   return (
     <Container expand="sm">
-      <Form inline>
+      <Form inline size="sm">
         <div
           style={{
             width: "50vw",
@@ -44,9 +46,10 @@ function ContactUs() {
             backgroundColor: "rgba(42, 255, 76,0.8)",
             borderRadius: "50px",
             padding: "15px",
+            minWidth: min("80vw", "300px"),
           }}
         >
-          <h2 className="bg-white">SignUp</h2>
+          <h2 className="bg-white">Contact us</h2>
           <FormGroup>
             <FormControl
               type="text"
@@ -80,89 +83,27 @@ function ContactUs() {
             />
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="addressCountry"
-              id="Country"
-              name="addressCountry"
-              value={formData.addressCountry}
+          <Form.Group>
+            <Form.Control
+              as="textarea"
+              rows={5}
+              type="textarea"
+              placeholder="message"
+              id="message"
+              name="message"
+              value={formData.message}
               onChange={handleChange}
             />
-          </FormGroup>
+          </Form.Group>
           <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="State"
-              id="addressState"
-              name="addressState"
-              value={formData.addressState}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="District"
-              id="addressDistrict"
-              name="addressDistrict"
-              value={formData.addressDistrict}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="District registration number"
-              id="districtRegistrationNumber"
-              name="districtRegistrationNumber"
-              value={formData.districtRegistrationNumber}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="password"
-              placeholder="password"
-              id="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="confirmPassword"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-
           <Button
             type="submit"
             onClick={handleSubmit}
             variant="warning"
             size="sm"
           >
-            SignUp
+            Send
           </Button>
-          <label>
-            Already have account
-            <span>
-              <Button variant="warning" size="sm">
-                Login
-              </Button>
-            </span>
-          </label>
         </div>
       </Form>
     </Container>

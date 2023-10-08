@@ -18,6 +18,12 @@ function Navigation() {
               <LinkContainer to="/contactus">
                 <Nav.Link href="/contactus">Contact Us</Nav.Link>
               </LinkContainer>
+              <LinkContainer to="/paymentdetails">
+                <Nav.Link href="/paymentdetails">Payment Details</Nav.Link>
+              </LinkContainer>
+              <LinkContainer to="/search">
+                <Nav.Link href="/search">Search</Nav.Link>
+              </LinkContainer>
             </Nav>
             <Nav>
               <LinkContainer to="/login">

@@ -1,7 +1,7 @@
 import React from "react";
 
-function Footer1() {
+function BottomFooter() {
   return <div>All rights reserved @SR dev tech team</div>;
 }
 
-export default Footer1;
+export default BottomFooter;

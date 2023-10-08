@@ -8,15 +8,18 @@ import Button from "react-bootstrap/esm/Button";
 
 function Home() {
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    phoneNumber: "",
-    addressCountry: "",
-    addressState: "",
-    addressDistrict: "",
-    districtRegistrationNumber: "",
-    password: "",
-    confirmPassword: "",
+    agentId: "",
+    driverName: "",
+    aadharNumber: "",
+    aadharPhoto: "",
+    panCardNumber: "",
+    panCardPhoto: "",
+    driverPhoneNumber: "",
+    rcNumber: "",
+    rcPhoto: "",
+    extraInput1: "",
+    extraInput2: "",
+    extraInput3: "",
   });
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -54,25 +57,14 @@ function Home() {
             minWidth: min("80vw", "300px"),
           }}
         >
-          <h2 className="bg-white">SignUp</h2>
+          <h2 className="bg-white">Add</h2>
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="name"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="email"
-              placeholder="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              placeholder="agentId"
+              id="agentId"
+              name="agentId"
+              value={formData.agentId}
               onChange={handleChange}
             />
           </FormGroup>
@@ -80,10 +72,10 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="phoneNumber"
-              id="phoneNumber"
-              name="phoneNumber"
-              value={formData.phoneNumber}
+              placeholder="driverName"
+              id="driverName"
+              name="driverName"
+              value={formData.driverName}
               onChange={handleChange}
             />
           </FormGroup>
@@ -91,10 +83,23 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="addressCountry"
-              id="Country"
-              name="addressCountry"
-              value={formData.addressCountry}
+              placeholder="aadharNumber"
+              id="aadharNumber"
+              name="aadharNumber"
+              value={formData.aadharNumber}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <div style={{ padding: "2px", color: "red" }}>
+            Upload aadhar card below
+          </div>
+          <FormGroup>
+            <FormControl
+              type="file"
+              placeholder="aadharPhoto"
+              id="aadharPhoto"
+              name="aadharPhoto"
+              value={formData.aadharPhoto}
               onChange={handleChange}
             />
           </FormGroup>
@@ -102,10 +107,23 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="State"
-              id="addressState"
-              name="addressState"
-              value={formData.addressState}
+              placeholder="panCardNumber"
+              id="panCardNumber"
+              name="panCardNumber"
+              value={formData.panCardNumber}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <div style={{ padding: "2px", color: "red" }}>
+            Upload pan card below
+          </div>
+          <FormGroup>
+            <FormControl
+              type="file"
+              placeholder="panCardPhoto"
+              id="panCardPhoto"
+              name="panCardPhoto"
+              value={formData.panCardPhoto}
               onChange={handleChange}
             />
           </FormGroup>
@@ -113,10 +131,10 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="District"
-              id="addressDistrict"
-              name="addressDistrict"
-              value={formData.addressDistrict}
+              placeholder="Driver phone number"
+              id="driverPhoneNumber"
+              name="driverPhoneNumber"
+              value={formData.driverPhoneNumber}
               onChange={handleChange}
             />
           </FormGroup>
@@ -124,21 +142,23 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="District registration number"
-              id="districtRegistrationNumber"
-              name="districtRegistrationNumber"
-              value={formData.districtRegistrationNumber}
+              placeholder="rcNumber"
+              id="rcNumber"
+              name="rcNumber"
+              value={formData.rcNumber}
               onChange={handleChange}
             />
           </FormGroup>
-          <div style={{ padding: "2px" }}></div>
+          <div style={{ padding: "2px", color: "red" }}>
+            Upload RC slip below
+          </div>{" "}
           <FormGroup>
             <FormControl
-              type="password"
-              placeholder="password"
-              id="password"
-              name="password"
-              value={formData.password}
+              type="file"
+              placeholder="rcPhoto"
+              id="rcPhoto"
+              name="rcPhoto"
+              value={formData.rcPhoto}
               onChange={handleChange}
             />
           </FormGroup>
@@ -146,31 +166,44 @@ function Home() {
           <FormGroup>
             <FormControl
               type="text"
-              placeholder="confirmPassword"
-              id="confirmPassword"
-              name="confirmPassword"
-              value={formData.confirmPassword}
+              placeholder="extraInput1"
+              id="extraInput1"
+              name="extraInput1"
+              value={formData.extraInput1}
               onChange={handleChange}
             />
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
-
+          <FormGroup>
+            <FormControl
+              type="text"
+              placeholder="extraInput2"
+              id="extraInput2"
+              name="extraInput2"
+              value={formData.extraInput2}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <div style={{ padding: "2px" }}></div>
+          <FormGroup>
+            <FormControl
+              type="text"
+              placeholder="extraInput3"
+              id="extraInput3"
+              name="extraInput3"
+              value={formData.extraInput3}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <div style={{ padding: "2px" }}></div>
           <Button
             type="submit"
             onClick={handleSubmit}
             variant="warning"
             size="sm"
           >
-            SignUp
+            Add
           </Button>
-          <label>
-            Already have account
-            <span>
-              <Button variant="warning" size="sm">
-                Login
-              </Button>
-            </span>
-          </label>
         </div>
       </Form>
     </Container>
