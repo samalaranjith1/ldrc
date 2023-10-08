@@ -6,7 +6,7 @@ import FormGroup from "react-bootstrap/esm/FormGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/esm/Button";
 
-function SignUp() {
+function ContactUs() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -29,16 +29,9 @@ function SignUp() {
     e.preventDefault();
     console.log(formData);
   };
-  const min = (a, b) => {
-    if (a > b) {
-      return b;
-    } else {
-      return a;
-    }
-  };
   return (
     <Container expand="sm">
-      <Form inline size="sm">
+      <Form inline>
         <div
           style={{
             width: "50vw",
@@ -51,7 +44,6 @@ function SignUp() {
             backgroundColor: "rgba(42, 255, 76,0.8)",
             borderRadius: "50px",
             padding: "15px",
-            minWidth: min("80vw", "300px"),
           }}
         >
           <h2 className="bg-white">SignUp</h2>
@@ -177,4 +169,4 @@ function SignUp() {
   );
 }
 
-export default SignUp;
+export default ContactUs;

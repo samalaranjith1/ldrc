@@ -1,7 +1,6 @@
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import SignUp from "./SignUp";
 import { LinkContainer } from "react-router-bootstrap";
 
 function Navigation() {

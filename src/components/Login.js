@@ -22,57 +22,79 @@ function Login() {
     e.preventDefault();
     console.log(formData);
   };
+  const min = (a, b) => {
+    if (a > b) {
+      return b;
+    } else {
+      return a;
+    }
+  };
   return (
     <Container expand="sm">
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <div className="align-items-center">
-          <h2>Login</h2>
-          <form onSubmit={handleSubmit}>
-            <div>
-              <label htmlFor="email">Email</label>
-              <input
-                type="text"
-                id="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-              />
-            </div>
-            <div>
-              <label htmlFor="password">Password</label>
-              <input
-                type="text"
-                id="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-              />
-            </div>
-            <button type="submit">Login</button>
-          </form>
+      <Form inline>
+        <div
+          style={{
+            width: "50vw",
+            alignContent: "center",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            margin: "0 auto",
+            backgroundColor: "rgba(42, 255, 76,0.8)",
+            borderRadius: "50px",
+            padding: "15px",
+            minWidth: min("80vw", "300px"),
+          }}
+        >
+          <h2 className="bg-white">Login</h2>
+          <FormGroup>
+            <FormControl
+              type="mail"
+              placeholder="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <div style={{ padding: "2px" }}></div>
+
+          <FormGroup shrink="sm">
+            <FormControl
+              type="password"
+              placeholder="password"
+              id="password"
+              name="password"
+              value={formData.password}
+              onChange={handleChange}
+            />
+          </FormGroup>
+          <Button
+            type="submit"
+            onClick={handleSubmit}
+            variant="warning"
+            size="sm"
+          >
+            Login
+          </Button>
           <label>
             Don't have account
             <span>
-              <button>SignUp</button>
+              <Button variant="warning" size="sm">
+                SignUp
+              </Button>
             </span>
           </label>
-          <br></br>
           <label>
-            Lost password account
+            Reset password
             <span>
-              <button>Forget Password</button>
+              <Button variant="warning" size="sm">
+                Forgot Password
+              </Button>
             </span>
           </label>
         </div>
-      </div>
-      <Form inline>
-        <FormGroup controlId="formInlineName">
-          <FormControl type="text" placeholder="Jane Doe" />
-        </FormGroup>{" "}
-        <FormGroup controlId="formInlineEmail">
-          <FormControl type="email" placeholder="jane.doe@example.com" />
-        </FormGroup>{" "}
-        <Button type="submit">Send invitation</Button>
       </Form>
       ;
     </Container>
