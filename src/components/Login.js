@@ -7,8 +7,10 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/esm/Button";
 
 function Login() {
+  const [validated, setValidated] = useState(false);
+
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   });
   const handleChange = (e) => {
@@ -51,16 +53,23 @@ function Login() {
           <FormGroup>
             <FormControl
               type="mail"
-              placeholder="email"
-              id="email"
-              name="email"
-              value={formData.email}
+              placeholder="username"
+              id="username"
+              name="username"
+              value={formData.username}
               onChange={handleChange}
             />
+            {/* {formData.username &&
+            /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+              formData.username
+            ) ? (
+              <span></span>
+            ) : (
+              <span>please enter valid email </span>
+            )} */}
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
-
-          <FormGroup shrink="sm">
+          <FormGroup>
             <FormControl
               type="password"
               placeholder="password"

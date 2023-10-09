@@ -7,6 +7,7 @@ import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/esm/Button";
 
 function SignUp() {
+  const [label, setLabel] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -27,7 +28,39 @@ function SignUp() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    if (
+      formData.name &&
+      formData.email &&
+      formData.phoneNumber &&
+      formData.addressCountry &&
+      formData.addressState &&
+      formData.addressDistrict &&
+      formData.districtRegistrationNumber &&
+      formData.password &&
+      formData.confirmPassword
+    ) {
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
+      ) {
+        if (/(0|91)?[6-9][0-9]{9}/.test(formData.phoneNumber)) {
+          if (formData.password === formData.confirmPassword) {
+            console.log(formData);
+          } else {
+            setLabel(true);
+            alert("Please enter password and confrimPassword as same");
+          }
+        } else {
+          setLabel(true);
+          alert("Plase enter proper phone number");
+        }
+      } else {
+        setLabel(true);
+        alert("Please enter proper email");
+      }
+    } else {
+      setLabel(true);
+      alert("Please enter all fileds");
+    }
   };
   const min = (a, b) => {
     if (a > b) {
@@ -56,6 +89,7 @@ function SignUp() {
         >
           <h2 className="bg-white">SignUp</h2>
           <FormGroup>
+            {label && <Form.Label>Name</Form.Label>}
             <FormControl
               type="text"
               placeholder="name"
@@ -67,6 +101,7 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>Email</Form.Label>}
             <FormControl
               type="email"
               placeholder="email"
@@ -75,9 +110,14 @@ function SignUp() {
               value={formData.email}
               onChange={handleChange}
             />
+            {formData.email &&
+              !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                formData.email
+              ) && <span> Please enter proper email</span>}
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>Phone Number</Form.Label>}
             <FormControl
               type="text"
               placeholder="phoneNumber"
@@ -86,9 +126,14 @@ function SignUp() {
               value={formData.phoneNumber}
               onChange={handleChange}
             />
+            {formData.phoneNumber &&
+              !/(0|91)?[6-9][0-9]{9}/.test(formData.phoneNumber) && (
+                <span> Please enter proper Phone number</span>
+              )}
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>Country</Form.Label>}
             <FormControl
               type="text"
               placeholder="addressCountry"
@@ -100,6 +145,7 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>State</Form.Label>}
             <FormControl
               type="text"
               placeholder="State"
@@ -111,6 +157,7 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>District</Form.Label>}
             <FormControl
               type="text"
               placeholder="District"
@@ -122,6 +169,8 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>District Registraion Number</Form.Label>}
+
             <FormControl
               type="text"
               placeholder="District registration number"
@@ -133,6 +182,7 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>Password</Form.Label>}
             <FormControl
               type="password"
               placeholder="password"
@@ -144,6 +194,7 @@ function SignUp() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <Form.Label>Confirm Password</Form.Label>}
             <FormControl
               type="text"
               placeholder="confirmPassword"

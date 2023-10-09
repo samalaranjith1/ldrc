@@ -10,6 +10,7 @@ function PaymentDetails() {
   const [formData, setFormData] = useState({
     agentId: "",
     rcDataId: "",
+    paymentWay: "",
     cash: "",
     onlineTransfer: "",
     onlineTransferPaymentScreenshot: "",
@@ -23,7 +24,19 @@ function PaymentDetails() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    if (
+      formData.agentId &&
+      formData.rcDataId &&
+      formData.amount &&
+      formData.paymentWay &&
+      formData.paymentWay === "OnlineTransfer"
+        ? formData.onlineTransferPaymentScreenshot
+        : 1
+    ) {
+      console.log(formData);
+    } else {
+      alert("All feilds are required");
+    }
   };
   const min = (a, b) => {
     if (a > b) {
@@ -76,64 +89,49 @@ function PaymentDetails() {
           <div style={{ padding: "2px", color: "red" }}>
             Select cash or online Transfer
           </div>
-          {/* <FormGroup>
-            <FormControl
+          <FormGroup>
+            <Form.Check
+              inline
+              label="cash"
+              name="paymentWay"
               type="radio"
-              placeholder="cash"
-              id="cash"
-              name="cash"
-              value={formData.cash}
+              id="paymentWay"
+              value="Cash"
+              checked={formData.paymentWay === "Cash"}
+              onChange={handleChange}
+            />
+            <Form.Check
+              inline
+              label="onlineTranfer"
+              name="paymentWay"
+              type="radio"
+              id="paymentWay"
+              value="OnlineTransfer"
+              checked={formData.paymentWay === "OnlineTransfer"}
               onChange={handleChange}
             />
           </FormGroup>
+
+          {formData.paymentWay == "OnlineTransfer" && (
+            <FormGroup>
+              <FormControl
+                type="file"
+                placeholder="onlineTransferPaymentScreenshot"
+                id="onlineTransferPaymentScreenshot"
+                name="onlineTransferPaymentScreenshot"
+                value={formData.onlineTransferPaymentScreenshot}
+                onChange={handleChange}
+              />
+            </FormGroup>
+          )}
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
             <FormControl
-              type="radio"
-              placeholder="onlineTransfer"
-              id="onlineTransfer"
-              name="onlineTransfer"
-              value={formData.onlineTransfer}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div> */}
-          <Form.Check
-            inline
-            label="cash"
-            name="paymentWay"
-            type="radio"
-            id="cash"
-            value={formData.cash}
-            onChange={handleChange}
-          />
-          <Form.Check
-            inline
-            label="onlineTranfer"
-            name="paymentWay"
-            type="radio"
-            id="onlineTransfer"
-            value={formData.onlineTransfer}
-            onChange={handleChange}
-          />
-          <FormGroup>
-            <FormControl
-              type="file"
-              placeholder="onlineTransferPaymentScreenshot"
-              id="onlineTransferPaymentScreenshot"
-              name="onlineTransferPaymentScreenshot"
-              value={formData.onlineTransferPaymentScreenshot}
-              onChange={handleChange}
-            />
-          </FormGroup>
-          <div style={{ padding: "2px" }}></div>
-          <FormGroup>
-            <FormControl
-              type="text"
-              placeholder="extraInput1"
-              id="extraInput1"
-              name="extraInput1"
-              value={formData.extraInput1}
+              type="number"
+              placeholder="amount"
+              id="amount"
+              name="amount"
+              value={formData.amount}
               onChange={handleChange}
             />
           </FormGroup>

@@ -5,19 +5,30 @@ import Form from "react-bootstrap/esm/Form";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/esm/Button";
+import Col from "react-bootstrap/Col";
 
 function Search() {
+  const [validated, setValidated] = useState(false);
   const [searchData, setSearchData] = useState({ rcDataId: "" });
   const handleChangeSearchData = (e) => {
     const { name, value } = e.target;
-    setFormData({
+    setSearchData({
       ...formData,
       [name]: value,
     });
   };
   const handleSubmitSearchData = (e) => {
+    const form = e.currentTarget;
+    if (form.checkValidity() === false) {
+      e.preventDefault();
+      e.stopPropagation();
+    }
+    if (searchData.rcDataId !== "") {
+      console.log(searchData.rcDataId);
+    }
+    setValidated(true);
+
     e.preventDefault();
-    console.log(formData);
   };
   const [formData, setFormData] = useState({
     agentId: "",
@@ -42,7 +53,6 @@ function Search() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
   };
   const min = (a, b) => {
     if (a > b) {
@@ -54,7 +64,13 @@ function Search() {
   return (
     <>
       <Container expand="sm">
-        <Form inline size="sm">
+        <Form
+          inline
+          size="sm"
+          validated={validated}
+          noValidate
+          onSubmit={handleSubmitSearchData}
+        >
           <div
             style={{
               width: "50vw",
@@ -71,15 +87,19 @@ function Search() {
             }}
           >
             <h3 className="bg-white">Search</h3>
-            <FormGroup>
+            <FormGroup as={Col} md="4" controlId="validationCustom01">
               <FormControl
+                required
                 type="text"
                 placeholder="rcDataId"
                 id="rcDataId"
                 name="rcDataId"
                 value={searchData.rcDataId}
-                onChange={handleChange}
+                onChange={handleChangeSearchData}
               />
+              <Form.Control.Feedback type="invalid">
+                Please enter rcDataId
+              </Form.Control.Feedback>
             </FormGroup>
             <div style={{ padding: "2px" }}></div>
             <Button
@@ -88,7 +108,7 @@ function Search() {
               variant="warning"
               size="sm"
             >
-              Add
+              Search
             </Button>
           </div>
         </Form>
