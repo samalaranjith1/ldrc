@@ -5,8 +5,10 @@ import Form from "react-bootstrap/esm/Form";
 import FormGroup from "react-bootstrap/esm/FormGroup";
 import FormControl from "react-bootstrap/FormControl";
 import Button from "react-bootstrap/esm/Button";
+import FormLabel from "react-bootstrap/esm/FormLabel";
 
 function ContactUs() {
+  const [label, setLabel] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -22,7 +24,29 @@ function ContactUs() {
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(formData);
+    if (
+      formData.name &&
+      formData.email &&
+      formData.phoneNumber &&
+      formData.message
+    ) {
+      if (
+        /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(formData.email)
+      ) {
+        if (/(0|91)?[6-9][0-9]{9}/.test(formData.phoneNumber)) {
+          console.log(formData);
+        } else {
+          setLabel(true);
+          alert("Plase enter proper phone number");
+        }
+      } else {
+        setLabel(true);
+        alert("Please enter proper email");
+      }
+    } else {
+      setLabel(true);
+      alert("all fields are mandatory");
+    }
   };
   const min = (a, b) => {
     if (a > b) {
@@ -51,6 +75,7 @@ function ContactUs() {
         >
           <h2 className="bg-white">Contact us</h2>
           <FormGroup>
+            {label && <FormLabel>Name</FormLabel>}
             <FormControl
               type="text"
               placeholder="name"
@@ -62,6 +87,7 @@ function ContactUs() {
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <FormLabel>Email</FormLabel>}
             <FormControl
               type="email"
               placeholder="email"
@@ -70,9 +96,14 @@ function ContactUs() {
               value={formData.email}
               onChange={handleChange}
             />
+            {formData.email &&
+              !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(
+                formData.email
+              ) && <span> Please enter proper email</span>}
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <FormGroup>
+            {label && <FormLabel>Phone Number</FormLabel>}
             <FormControl
               type="text"
               placeholder="phoneNumber"
@@ -81,9 +112,14 @@ function ContactUs() {
               value={formData.phoneNumber}
               onChange={handleChange}
             />
+            {formData.phoneNumber &&
+              !/(0|91)?[6-9][0-9]{9}/.test(formData.phoneNumber) && (
+                <span> Please enter proper Phone number</span>
+              )}
           </FormGroup>
           <div style={{ padding: "2px" }}></div>
           <Form.Group>
+            {label && <FormLabel>Message</FormLabel>}
             <Form.Control
               as="textarea"
               rows={5}
